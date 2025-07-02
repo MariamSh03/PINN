@@ -1182,6 +1182,16 @@ def main():
             with col2:
                 st.plotly_chart(fig_D, use_container_width=True)
         
+        # Loss Function Plots
+        st.subheader("📉 Loss Function Analysis")
+        st.markdown("Training loss evolution showing how well the PINN learned the physics and initial conditions:")
+        
+        loss_fig = create_loss_plots(st.session_state.solver)
+        if loss_fig:
+            st.plotly_chart(loss_fig, use_container_width=True)
+        else:
+            st.info("No loss history available. Train the model to see loss plots.")
+        
         # Phase plots
         if show_phase:
             st.subheader("🌀 Phase Space Analysis")
