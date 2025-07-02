@@ -1,14 +1,7 @@
 [theme]
-# Light theme configuration
-primaryColor = "#007bff"          # Blue primary color
-backgroundColor = "#ffffff"       # White background
-secondaryBackgroundColor = "#f8f9fa"  # Light gray for sidebar/secondary elements
-textColor = "#000000"            # Black text
-
-[server]
-# Optional: Set to false to prevent theme switching by users
-enableStaticServing = false
-
-[client]
-# Optional: Show toolbar in deployed apps
-toolbarMode = "auto" 
+base = "light"
+primaryColor = "#1f89e8"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F6F6F9"
+textColor = "#37352F"
+font = "sans serif"

@@ -21,7 +21,7 @@ pip install streamlit tensorflow numpy matplotlib plotly pandas
    ```
 3. **Open your browser** - Streamlit will automatically open `http://localhost:8501`
 
-The application will start with a clean, light-themed interface optimized for scientific computing visualization.
+The application will start with a clean interface optimized for scientific computing visualization.
 
 ## 📊 What This Application Does
 
@@ -41,7 +41,7 @@ dS/dt = h(S₀ - S) - jDS       (Staging progression)
 - **🎛️ Interactive Parameter Control**: Adjust all system parameters dynamically
 - **📊 Comprehensive Visualization**: Solution plots, phase space analysis, and error metrics
 - **💾 Model Management**: Save and load trained models for reproducibility
-- **🌓 Adaptive UI**: Light/dark theme support with responsive design
+- **📱 Responsive UI**: Clean, adaptive design that works on different screen sizes
 
 ### Application Interface
 

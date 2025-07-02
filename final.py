@@ -23,190 +23,315 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for light theme and better styling
-st.markdown("""
-<style>
-    /* Light Theme Override */
-    .stApp {
-        background-color: #ffffff;
-        color: #000000;
-    }
+# Custom CSS styling for clean light interface
+# st.markdown("""
+# <style>
+#     /* FORCE LIGHT THEME EVERYWHERE */
+#     .stApp {
+#         background-color: #ffffff !important;
+#         color: #000000 !important;
+#     }
     
-    /* Sidebar light theme */
-    .css-1d391kg {
-        background-color: #f8f9fa;
-    }
+#     /* SIDEBAR - LIGHT BACKGROUND */
+#     .css-1d391kg, .css-1lcbmhc, .css-17eq0hr, section[data-testid="stSidebar"] {
+#         background-color: #f8f9fa !important;
+#     }
     
-    /* Main content area */
-    .main .block-container {
-        background-color: #ffffff;
-        padding-top: 2rem;
-    }
+#     .css-1d391kg > div, .css-1lcbmhc > div {
+#         background-color: #f8f9fa !important;
+#     }
     
-    /* Headers and text */
-    h1, h2, h3, h4, h5, h6 {
-        color: #1f1f1f !important;
-    }
+#     /* MAIN CONTENT AREA - WHITE */
+#     .main .block-container {
+#         background-color: #ffffff !important;
+#         padding-top: 2rem;
+#     }
     
-    .stMarkdown p {
-        color: #333333;
-    }
+#     /* NAVIGATION HEADER - LIGHT */
+#     header[data-testid="stHeader"] {
+#         background-color: #f8f9fa !important;
+#     }
     
-    /* Sidebar elements */
-    .stSelectbox > div > div {
-        background-color: #ffffff;
-        color: #000000;
-    }
+#     .css-18e3th9, .css-1d391kg, .css-k1vhr4, header {
+#         background-color: #f8f9fa !important;
+#     }
     
-    .stSlider > div > div > div {
-        background-color: #f0f0f0;
-    }
+#     /* ALL TEXT DARK */
+#     h1, h2, h3, h4, h5, h6 {
+#         color: #000000 !important;
+#     }
     
-    .stNumberInput > div > div > input {
-        background-color: #ffffff;
-        color: #000000;
-        border: 1px solid #cccccc;
-    }
+#     .stMarkdown, .stMarkdown p, .stText, div[data-testid="stMarkdownContainer"] {
+#         color: #000000 !important;
+#     }
     
-    /* Buttons */
-    .stButton > button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        transition: all 0.3s;
-    }
+#     /* SIDEBAR TEXT DARK */
+#     .css-1d391kg .stMarkdown, .css-1d391kg .stText, .css-1d391kg label {
+#         color: #000000 !important;
+#     }
     
-    .stButton > button:hover {
-        background-color: #0056b3;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
+#          /* SIDEBAR ELEMENTS - LIGHT WITH DARK TEXT */
+#      .stSelectbox > div > div {
+#          background-color: #ffffff !important;
+#          color: #000000 !important;
+#          border: 1px solid #cccccc !important;
+#      }
+     
+#      .stSelectbox label {
+#          color: #000000 !important;
+#      }
+     
+#      /* DROPDOWN TEXT AND OPTIONS */
+#      .stSelectbox > div > div > div {
+#          color: #000000 !important;
+#          background-color: #ffffff !important;
+#      }
+     
+#      .stSelectbox option {
+#          color: #000000 !important;
+#          background-color: #ffffff !important;
+#      }
+     
+#     /* SLIDER INPUT FIXES */
+#     input[type="range"] {
+#         background: #ffffff !important;
+#         color: #000000 !important;
+#     }
+
+#     /* SLIDER TICKS AND TEXT */
+#     .stSlider div[data-testid="stTickBar"] span {
+#         color: #000000 !important;
+#     }
+
+#     .stSlider label, .stSlider span, .stSlider div {
+#         color: #000000 !important;
+#     }
+
+#     /* ACCESSIBILITY-FRIENDLY FALLBACKS */
+#     div[role="slider"], div[aria-label*="slider"] {
+#         color: #000000 !important;
+#         background-color: #ffffff !important;
+#     }
+
+#     /* DARK TEXT FOR ANY REMAINING COMPONENTS */
+#     [data-testid*="label"], [data-testid*="stSlider"], [data-testid*="stNumberInput"] {
+#         color: #000000 !important;
+#     }
+
+#         /* NUMBER INPUTS */
+#     .stNumberInput > div > div > input {
+#         background-color: #ffffff !important;
+#         color: #000000 !important;
+#         border: 1px solid #cccccc !important;
+#     }
     
-    /* Primary button styling */
-    .stButton > button[kind="primary"] {
-        background-color: #28a745;
-        color: white;
-    }
+#     .stNumberInput label {
+#         color: #000000 !important;
+#     }
     
-    .stButton > button[kind="primary"]:hover {
-        background-color: #1e7e34;
-    }
+#     /* BUTTONS */
+#     .stButton > button {
+#         background-color: #007bff !important;
+#         color: white !important;
+#         border: none !important;
+#         border-radius: 5px;
+#         transition: all 0.3s;
+#     }
     
-    /* Plot containers */
-    .stPlotlyChart {
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        padding: 15px;
-        margin: 10px 0;
-        background-color: #ffffff;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
+#     .stButton > button:hover {
+#         background-color: #0056b3 !important;
+#         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+#     }
     
-    /* Metric cards */
-    .metric-card {
-        background-color: #f8f9fa;
-        border: 1px solid #e9ecef;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        margin: 0.5rem 0;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
+#     .stButton > button[kind="primary"] {
+#         background-color: #28a745 !important;
+#         color: white !important;
+#     }
     
-    /* Progress bar */
-    .stProgress .st-bo {
-        background-color: #007bff;
-    }
+#     .stButton > button[kind="primary"]:hover {
+#         background-color: #1e7e34 !important;
+#     }
     
-    .stProgress > div > div > div {
-        background-color: #e9ecef;
-    }
+#     /* PLOT CONTAINERS - WHITE BACKGROUND */
+#     .stPlotlyChart {
+#         border: 1px solid #e0e0e0 !important;
+#         border-radius: 8px;
+#         padding: 15px;
+#         margin: 10px 0;
+#         background-color: #ffffff !important;
+#         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+#     }
     
-    /* Expander styling */
-    .streamlit-expanderHeader {
-        background-color: #f8f9fa;
-        border: 1px solid #e9ecef;
-        border-radius: 5px;
-    }
+#     /* FORCE PLOTLY PLOT BACKGROUNDS WHITE */
+#     .js-plotly-plot .plotly .modebar {
+#         background-color: #ffffff !important;
+#     }
     
-    .streamlit-expanderContent {
-        background-color: #ffffff;
-        border: 1px solid #e9ecef;
-        border-top: none;
-    }
+#     .js-plotly-plot .plotly .main-svg {
+#         background-color: #ffffff !important;
+#     }
     
-    /* Metrics styling */
-    [data-testid="metric-container"] {
-        background-color: #f8f9fa;
-        border: 1px solid #e9ecef;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
+#     /* METRIC CARDS - LIGHT */
+#     .metric-card {
+#         background-color: #f8f9fa !important;
+#         border: 1px solid #e9ecef;
+#         padding: 1rem;
+#         border-radius: 0.5rem;
+#         margin: 0.5rem 0;
+#         box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+#     }
     
-    /* Success/Error messages */
-    .stSuccess {
-        background-color: #d4edda;
-        border-color: #c3e6cb;
-        color: #155724;
-    }
+#     [data-testid="metric-container"] {
+#         background-color: #f8f9fa !important;
+#         border: 1px solid #e9ecef !important;
+#         padding: 1rem;
+#         border-radius: 0.5rem;
+#         box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+#         color: #000000 !important;
+#     }
     
-    .stError {
-        background-color: #f8d7da;
-        border-color: #f5c6cb;
-        color: #721c24;
-    }
+#     [data-testid="metric-container"] > div {
+#         color: #000000 !important;
+#     }
     
-    .stWarning {
-        background-color: #fff3cd;
-        border-color: #ffeaa7;
-        color: #856404;
-    }
+#     /* PROGRESS BAR */
+#     .stProgress .st-bo {
+#         background-color: #007bff !important;
+#     }
     
-    /* Tabs styling */
-    .stTabs [data-baseweb="tab-list"] {
-        background-color: #f8f9fa;
-        border-bottom: 1px solid #e9ecef;
-    }
+#     .stProgress > div > div > div {
+#         background-color: #e9ecef !important;
+#     }
     
-    .stTabs [data-baseweb="tab"] {
-        color: #495057;
-        background-color: transparent;
-    }
+#     /* EXPANDERS - LIGHT */
+#     .streamlit-expanderHeader {
+#         background-color: #f8f9fa !important;
+#         border: 1px solid #e9ecef !important;
+#         border-radius: 5px;
+#         color: #000000 !important;
+#     }
     
-    .stTabs [aria-selected="true"] {
-        background-color: #007bff;
-        color: white;
-    }
+#     .streamlit-expanderContent {
+#         background-color: #ffffff !important;
+#         border: 1px solid #e9ecef !important;
+#         border-top: none;
+#         color: #000000 !important;
+#     }
     
-    /* Sidebar multiselect */
-    .stMultiSelect > div {
-        background-color: #ffffff;
-    }
+#     /* TABS - LIGHT */
+#     .stTabs [data-baseweb="tab-list"] {
+#         background-color: #f8f9fa !important;
+#         border-bottom: 1px solid #e9ecef !important;
+#     }
     
-    /* Code blocks */
-    .stCodeBlock {
-        background-color: #f8f9fa;
-        border: 1px solid #e9ecef;
-    }
+#     .stTabs [data-baseweb="tab"] {
+#         color: #000000 !important;
+#         background-color: transparent !important;
+#     }
     
-    /* Tables */
-    .dataframe {
-        background-color: #ffffff;
-        color: #000000;
-    }
+#     .stTabs [aria-selected="true"] {
+#         background-color: #007bff !important;
+#         color: white !important;
+#     }
     
-    .dataframe th {
-        background-color: #f8f9fa;
-        color: #495057;
-    }
+#     /* MULTISELECT */
+#     .stMultiSelect > div {
+#         background-color: #ffffff !important;
+#     }
     
-    /* Custom styling for scientific notation */
-    .metric-value {
-        font-family: 'Courier New', monospace;
-        font-weight: bold;
-    }
-</style>
-""", unsafe_allow_html=True)
+#     .stMultiSelect label {
+#         color: #000000 !important;
+#     }
+    
+#     /* CODE BLOCKS */
+#     .stCodeBlock {
+#         background-color: #f8f9fa !important;
+#         border: 1px solid #e9ecef !important;
+#         color: #000000 !important;
+#     }
+    
+#     /* TABLES */
+#     .dataframe {
+#         background-color: #ffffff !important;
+#         color: #000000 !important;
+#     }
+    
+#     .dataframe th {
+#         background-color: #f8f9fa !important;
+#         color: #000000 !important;
+#     }
+    
+#     /* SUCCESS/ERROR MESSAGES */
+#     .stSuccess {
+#         background-color: #d4edda !important;
+#         border-color: #c3e6cb !important;
+#         color: #155724 !important;
+#     }
+    
+#     .stError {
+#         background-color: #f8d7da !important;
+#         border-color: #f5c6cb !important;
+#         color: #721c24 !important;
+#     }
+    
+#     .stWarning {
+#         background-color: #fff3cd !important;
+#         border-color: #ffeaa7 !important;
+#         color: #856404 !important;
+#     }
+    
+#     /* CHECKBOX */
+#     .stCheckbox label {
+#         color: #000000 !important;
+#     }
+    
+#     /* RADIO */
+#     .stRadio label {
+#         color: #000000 !important;
+#     }
+    
+#          /* ENSURE ALL LABELS ARE DARK */
+#      label {
+#          color: #000000 !important;
+#      }
+     
+#      /* FORCE ALL INPUT TEXT DARK */
+#      input {
+#          color: #000000 !important;
+#      }
+     
+#      /* FORCE ALL SPANS AND DIVS IN SIDEBAR DARK */
+#      .css-1d391kg span, .css-1d391kg div {
+#          color: #000000 !important;
+#      }
+     
+#      /* ADDITIONAL TEXT ELEMENTS */
+#      .stMarkdown span, .stText span {
+#          color: #000000 !important;
+#      }
+     
+#      /* FORCE WHITE BACKGROUNDS ON ALL MAIN CONTAINERS */
+#      div[data-testid="stVerticalBlock"] {
+#          background-color: #ffffff !important;
+#      }
+     
+#      div[data-testid="stHorizontalBlock"] {
+#          background-color: #ffffff !important;
+#      }
+     
+#      /* OVERRIDE ANY REMAINING COLORED TEXT */
+#      .st-emotion-cache-1y4p8pa, .st-emotion-cache-16idsys {
+#          color: #000000 !important;
+#      }
+    
+#     /* Custom styling for scientific notation */
+#     .metric-value {
+#         font-family: 'Courier New', monospace;
+#         font-weight: bold;
+#         color: #000000 !important;
+#     }
+# </style>
+# """, unsafe_allow_html=True)
 
 import tensorflow as tf
 import numpy as np
@@ -483,6 +608,7 @@ def initialize_session_state():
     if 'show_combined' not in st.session_state:
         st.session_state.show_combined = False
 
+
 # Utility functions
 def create_model_directory():
     """Create models directory if it doesn't exist"""
@@ -558,70 +684,10 @@ def load_parameter_presets():
     return presets
 
 # UI Components
-def apply_theme(theme_choice):
-    """Apply the selected theme"""
-    if theme_choice == "Light":
-        # Light theme CSS is already applied in the main CSS block
-        pass
-    elif theme_choice == "Dark":
-        # Apply dark theme overrides
-        st.markdown("""
-        <style>
-            /* Dark Theme Override */
-            .stApp {
-                background-color: #0e1117 !important;
-                color: #ffffff !important;
-            }
-            
-            .main .block-container {
-                background-color: #0e1117 !important;
-            }
-            
-            .css-1d391kg {
-                background-color: #262730 !important;
-            }
-            
-            h1, h2, h3, h4, h5, h6 {
-                color: #ffffff !important;
-            }
-            
-            .stMarkdown p {
-                color: #ffffff !important;
-            }
-            
-            .stPlotlyChart {
-                background-color: #262730 !important;
-                border: 1px solid #464a52 !important;
-            }
-            
-            [data-testid="metric-container"] {
-                background-color: #262730 !important;
-                border: 1px solid #464a52 !important;
-            }
-            
-            .metric-card {
-                background-color: #262730 !important;
-                border: 1px solid #464a52 !important;
-            }
-        </style>
-        """, unsafe_allow_html=True)
 
 def render_sidebar():
     """Render the sidebar with parameter controls"""
     st.sidebar.title("🎛️ Control Panel")
-    
-    # Theme Selection
-    st.sidebar.subheader("🎨 Theme Settings")
-    theme_choice = st.sidebar.selectbox(
-        "Choose Theme", 
-        ["Light", "Dark"], 
-        index=0,
-        help="Switch between light and dark themes. For permanent theme settings, check the config.toml file."
-    )
-    apply_theme(theme_choice)
-    
-    if st.sidebar.button("🔄 Apply Theme", help="Click to refresh theme changes"):
-        st.rerun()
     
     # Parameter Presets
     st.sidebar.subheader("📋 Parameter Presets")
@@ -1202,11 +1268,10 @@ def main():
         - **PINN**: Physics-informed neural network learning to satisfy the differential equations
         - **Error Metrics**: Absolute and relative errors between PINN and RK4 solutions
         
-        **Theme Options:**
-        - **Light Theme**: Clean, bright interface with white backgrounds
-        - **Dark Theme**: Dark interface with reduced eye strain
-        - **Config File**: Modify `.streamlit/config.toml` for permanent theme settings
-        - **Dynamic Switching**: Use the sidebar theme selector for instant theme changes
+        **Interface:**
+        - **Clean Design**: Light interface with white backgrounds optimized for scientific computing
+        - **Responsive Layout**: Adaptive design that works on different screen sizes
+        - **Config File**: Modify `.streamlit/config.toml` for custom theme settings if needed
         """)
     
     with st.expander("🧠 About Physics-Informed Neural Networks"):
